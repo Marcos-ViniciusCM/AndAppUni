@@ -26,4 +26,15 @@
         tools:layout_editor_absoluteX="155dp"
         tools:layout_editor_absoluteY="279dp" />
 
+    <EditText
+        android:id="@+id/test_table"
+        android:layout_width="74dp"
+        android:layout_height="33dp"
+        android:layout_below="@+id/button"
+        android:gravity="center"
+
+
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="358dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
