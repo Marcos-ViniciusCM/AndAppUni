@@ -1,4 +1,4 @@
-package com.example.anjosgaar;
+package com.example.appanjos;
 
 import org.junit.Test;
 
