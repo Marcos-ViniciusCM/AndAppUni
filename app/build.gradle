@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.appanjos'
+    namespace 'com.example.anjosgaar'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.appanjos"
+        applicationId "com.example.anjosgaar"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -36,4 +36,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+task wrapper(type: Wrapper){
+    gradleVersion = '7.2'
+}
+task prepareKotlinBuildScriptModel {
+
 }
