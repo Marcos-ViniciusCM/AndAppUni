@@ -26,11 +26,11 @@ public class ConexaoFactory {
             e.printStackTrace();
         }
     }
-    public static void close(Connection connection , Statement stm) {
+    public static void close(Connection connection , Statement stmt) {
         close(connection);
         try {
-            if (stm != null)
-                connection.close();
+            if (stmt != null)
+                stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

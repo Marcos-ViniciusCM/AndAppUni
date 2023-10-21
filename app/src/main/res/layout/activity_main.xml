@@ -21,6 +21,14 @@
             android:layout_width="360dp"
             android:layout_height="610dp"
             android:text="\n\n\n\n\n\n\nTestando bottom nav bar." />
+
+        <Button
+            android:id="@+id/testNavButton"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:foregroundGravity="center"
+            android:onClick="segundaTela"
+            android:text="SegundaTela" />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
