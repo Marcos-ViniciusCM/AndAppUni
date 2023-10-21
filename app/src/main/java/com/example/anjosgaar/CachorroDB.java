@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class CachorroDB {
     public static void save(Cachorro cachorro) {
-        String sql = "INSERT INTO anjoos_test.cachorros (nome, sexo,descricao) VALUES ('" + cachorro.getNome() + "', '" + cachorro.getSexo() + ","+cachorro.getDescricao()+"')";
+        String sql = "INSERT INTO anjoos_test.cachorros (nome, sexo, descricao) VALUES ('" + cachorro.getNome() + "', '" + cachorro.getSexo() + "','" + cachorro.getDescricao() + "')";
         Connection conn = ConexaoFactory.getConexao();
         try {
             Statement stmt = conn.createStatement();
