@@ -7,12 +7,12 @@ import java.sql.Statement;
 public class CachorroDB {
     public static void save(Cachorro cachorro) {
         String sql = "INSERT INTO anjoos_test.cachorros (nome, sexo, descricao) VALUES ('" + cachorro.getNome() + "', '" + cachorro.getSexo() + "','" + cachorro.getDescricao() + "')";
-        Connection conn = ConexaoFactory.getConexao();
+       Connection conn = ConexaoFactory.getConexao();
         try {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(sql);
-            ConexaoFactory.close(conn, stmt);
             System.out.println("registro inserido com sucesso");
+            ConexaoFactory.close(conn, stmt);
         } catch (SQLException e) {
             e.printStackTrace();
         }

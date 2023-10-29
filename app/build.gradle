@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.example.anjosgaar'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.anjosgaar"
@@ -29,17 +29,19 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation fileTree(dir: 'C:\\Users\\Marcos\\IdeaProjects\\jdbc\\lib', include: ['*.aar', '*.jar'], exclude: [])
     implementation fileTree(dir: 'C:\\Users\\Marcos\\IdeaProjects\\jdbc\\lib', include: ['*.aar', '*.jar'], exclude: [])
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
+    implementation 'mysql:mysql-connector-java:8.0.33'
 }
+
+
+
+
 task wrapper(type: Wrapper){
     gradleVersion = '7.2'
 }

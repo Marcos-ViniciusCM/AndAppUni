@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AnjosGaar"
 include ':app'
+include ':app:lib'
+include ':lib_jdbc'
