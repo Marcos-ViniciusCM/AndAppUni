@@ -4,23 +4,23 @@ public class Cachorro {
     private Integer id;
     private String nome;
     private String descricao;
-    private String Sexo;
+    private String sexo;
 
 
     public Cachorro() {
     }
 
-    public Cachorro(Integer id, String nome, String descricao, String sexo) {
+    public Cachorro(Integer id, String nome, String descricao,String sexo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        Sexo = sexo;
+        this.sexo = sexo;
     }
 
     public Cachorro(String nome, String sexo,String descricao) {
         this.nome = nome;
         this.descricao = descricao;
-        Sexo = sexo;
+        sexo = sexo;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Cachorro {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", Sexo='" + Sexo + '\'' +
+                ", Sexo='" + sexo + '\'' +
                 '}';
     }
 
@@ -58,10 +58,10 @@ public class Cachorro {
     }
 
     public String getSexo() {
-        return Sexo;
+        return sexo;
     }
 
     public void setSexo(String sexo) {
-        Sexo = sexo;
+        sexo = sexo;
     }
 }
