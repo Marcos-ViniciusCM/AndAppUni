@@ -71,6 +71,31 @@ public class CachorroDB {
         }
       }
 
+      public static void update(int id,String novoSexo,String novoNome,String novaDescricao) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try{
+            con = ConexaoFactory.getConexao();
+            String sql = "UPDATE cachorros SET nome = ?, sexo = ?, descricao = ? WHERE id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1,   novoNome);
+            stmt.setString(2,novoSexo);
+            stmt.setString(3,novaDescricao);
+            stmt.setInt(4,id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            if(con != null){
+                con.close();
+            }
+            if(stmt != null){
+                stmt.close();
+            }
+        }
+      }
+
 
 
 }
