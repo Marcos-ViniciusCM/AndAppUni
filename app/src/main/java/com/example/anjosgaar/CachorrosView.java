@@ -2,6 +2,7 @@ package com.example.anjosgaar;
 
 import static com.example.anjosgaar.CachorroDB.*;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,10 +11,13 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,8 +26,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import android.os.AsyncTask;
+import android.widget.ListView;
 
 public class CachorrosView extends AppCompatActivity {
     @Override
@@ -31,14 +37,46 @@ public class CachorrosView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cachorros_view);
 
-        Button seuBotao = findViewById(R.id.bt_addCao);
-        seuBotao.setOnClickListener(new View.OnClickListener() {
+        Button adicionar = findViewById(R.id.bt_addCao);
+        Button remove = findViewById(R.id.bt_removeCao);
+        Button update = findViewById(R.id.bt_updateCao);
+        Button mostrar = findViewById(R.id.bt_showCao);
+        adicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, 1);
             }
         });
+
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        CachorroDB.delete(1);
+                        Log.e("TAG", "removeuuuu");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                            }
+                        });
+                    }
+                }).start();
+
+            }
+        });
+
+        mostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new FetchDataFromDatabaseTask(CachorrosView.this).execute();
+            }
+        });
+
+
     }
 
     @Override
@@ -46,7 +84,7 @@ public class CachorrosView extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            // A imagem foi selecionada com sucesso
+
             Uri selectedImageUri = data.getData();
 
             // Inicie uma AsyncTask ou uma Thread para operações em segundo plano
@@ -65,10 +103,10 @@ public class CachorrosView extends AppCompatActivity {
                 InputStream imageInputStream = getContentResolver().openInputStream(selectedImageUri);
 
                 if (imageInputStream != null) {
-                    // Agora você pode chamar o método save com a imagem
+
                     CachorroDB.save("pipoca", "femea", "argumento3", imageInputStream);
                 } else {
-                    // Trate o caso em que o InputStream é nulo
+
                     Log.e("TAG", "Falha ao abrir o InputStream da imagem");
                 }
             } catch (FileNotFoundException e) {
@@ -80,6 +118,57 @@ public class CachorrosView extends AppCompatActivity {
             }
 
             return null;
+        }
+    }
+    protected List<Map<String, Object>> doInBackground(Void... voids) {
+        List<Map<String, Object>> cachorros = new ArrayList<>();
+
+        // Conectar ao servidor e obter dados
+        // Exemplo fictício, você precisa substituir isso com sua lógica real
+        try {
+            // Conectar ao servidor, obter dados e preencher a lista de cachorros
+            cachorros = CachorroDB.obterCao();
+        } catch (Exception e) {
+            // Lidar com exceções, se necessário
+            e.printStackTrace();
+        }
+
+        return cachorros;
+    }
+
+    private class FetchDataFromDatabaseTask extends AsyncTask<Void, Void, List<Map<String, Object>>> {
+
+        private WeakReference<Context> contextReference;
+
+        FetchDataFromDatabaseTask(Context context) {
+            contextReference = new WeakReference<>(context);
+        }
+
+        @Override
+        protected List<Map<String, Object>> doInBackground(Void... voids) {
+            // Conectar ao servidor e obter dados
+            // Exemplo fictício, você precisa substituir isso com sua lógica real
+            try {
+                // Conectar ao servidor, obter dados e preencher a lista de cachorros
+                Log.e("TAG", "era para retornar");
+                return CachorroDB.obterCao();
+
+            } catch (Exception e) {
+                // Lidar com exceções, se necessário
+                e.printStackTrace();
+                Log.e("TAG", "era para retornar lista vazia");
+                return new ArrayList<>(); // Retorna uma lista vazia em caso de erro
+            }
+        }
+
+        @Override
+        protected void onPostExecute(List<Map<String, Object>> cachorros) {
+            Context context = contextReference.get();
+            if (context != null) {
+                // Atualize a interface do usuário com os dados obtidos do banco
+                ListView seuListView = findViewById(R.id.seuListView);
+                seuListView.setAdapter(new CachorroAdapter(context, cachorros));
+            }
         }
     }
 }

@@ -1,15 +1,19 @@
 package com.example.anjosgaar;
 
-import static com.example.anjosgaar.ConexaoFactory.getConexao;
-
 import android.util.Log;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CachorroDB {
     public static void save(String nome, String sexo, String descricao, InputStream imagemInputStream ) {
@@ -75,7 +79,7 @@ public class CachorroDB {
         }
       }
 
-      public static void update(int id,String novoSexo,String novoNome,String novaDescricao) throws SQLException {
+      public static void update(int id,String novoSexo,String novoNome,String novaDescricao,InputStream imagemInputStream) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         try{
@@ -86,6 +90,7 @@ public class CachorroDB {
             stmt.setString(2,novoSexo);
             stmt.setString(3,novaDescricao);
             stmt.setInt(4,id);
+            stmt.setBlob(4, imagemInputStream);
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -99,6 +104,56 @@ public class CachorroDB {
             }
         }
       }
+
+    public static List<Map<String, Object>> obterCao() {
+        List<Map<String, Object>> cachorros = new ArrayList<>();
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = ConexaoFactory.getConexao();
+            String sql = "Select nome, sexo, descricao, foto FROM anjoos_test.cachorros";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                Map<String, Object> cachorro = new HashMap<>();
+                cachorro.put("nome", rs.getString("nome"));
+                cachorro.put("sexo", rs.getString("sexo"));
+                cachorro.put("descricao", rs.getString("descricao"));
+                Blob imagem = rs.getBlob("foto");
+
+                // Verifica se a imagem não é nula antes de adicionar ao Map
+                if (imagem != null) {
+                    InputStream imagemInputStream = imagem.getBinaryStream();
+                    cachorro.put("imagem", imagemInputStream);
+
+                }
+                cachorros.add(cachorro);
+                Log.d("CachorroDB", "Nome: " + cachorro.get("nome"));
+                Log.d("CachorroDB", "Sexo: " + cachorro.get("sexo"));
+                Log.d("CachorroDB", "Descricao: " + cachorro.get("descricao"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            try{
+                if(stmt != null)
+                    stmt.close();
+                if(conn != null){
+                    conn.close();
+                }
+                if(rs != null){
+                    rs.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+
+
+        return cachorros;
+    }
 
 
 

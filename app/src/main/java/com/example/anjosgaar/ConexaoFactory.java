@@ -21,34 +21,6 @@ public class ConexaoFactory {
             throw new RuntimeException(e);
         }
     }
-/*
-        public static void close (Connection connection){
-            try {
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        public static void close (Connection connection, Statement stmt){
-            close(connection);
-            try {
-                if (stmt != null)
-                    stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        public static void close (Connection connection, Statement stmt, ResultSet rs){
-            close(connection, stmt);
-            try {
-                if (rs != null)
-                    rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
- */
     }
 
