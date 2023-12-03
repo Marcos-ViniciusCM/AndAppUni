@@ -32,6 +32,11 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 
 public class CachorrosView extends AppCompatActivity {
+
+    public void segundaTela(View view){
+        Intent in =  new Intent(CachorrosView.this,MainActivity.class );
+        startActivity(in);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

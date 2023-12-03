@@ -6,64 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".CachorrosView">
 
-    <Button
-        android:id="@+id/bt_addCao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
-        android:text="adiconarCao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bt_removeCao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="396dp"
-        android:text="RemoveCao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bt_updateCao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:text="UpdateCao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bt_showCao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="324dp"
-        android:text="MostarCao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="-25dp">
 
         <!-- Adicione uma ListView com o ID correto -->
+
         <ListView
             android:id="@+id/seuListView"
-            android:layout_width="139dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
+            android:layout_width="237dp"
+            android:layout_height="708dp"
             android:divider="@android:color/darker_gray"
-            android:dividerHeight="1dp" />
+            android:dividerHeight="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bt_updateCao"
+            android:layout_width="127dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="244dp"
+            android:layout_marginBottom="436dp"
+            android:text="Atualizar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/seuListView" />
+
+        <Button
+            android:id="@+id/bt_addCao"
+            android:layout_width="127dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="244dp"
+            android:layout_marginBottom="364dp"
+            android:text="Adicionar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/seuListView" />
+
+        <Button
+            android:id="@+id/bt_showCao"
+            android:layout_width="127dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="244dp"
+            android:layout_marginBottom="292dp"
+            android:text="Mostrar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/seuListView" />
+
+        <Button
+            android:id="@+id/bt_removeCao"
+            android:layout_width="127dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="244dp"
+            android:layout_marginBottom="220dp"
+            android:text="Remover"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/seuListView" />
+
+        <Button
+            android:id="@+id/testNavButton"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_marginStart="268dp"
+            android:layout_marginTop="24dp"
+            android:foregroundGravity="center"
+            android:onClick="segundaTela"
+            android:text="Voltar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Seus outros componentes dentro do LinearLayout, se necessário -->
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
