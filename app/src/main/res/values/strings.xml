@@ -9,4 +9,5 @@
     <string name="c_es">Cães</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nessa_se_o_voc_pode_alterar_visualizar_a_tabela_de_cachorros_da_database_hosteada_no_mysql_para_o_site_anjos_gaar">Nessa seção você pode alterar/visualizar a tabela de cachorros da database hosteada no MYSQL para o site Anjos Gaar.</string>
 </resources>

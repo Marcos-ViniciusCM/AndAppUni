@@ -1,24 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/aggreen2"
     tools:context=".CachorroView">
 
     <!-- TODO: Update blank fragment layout -->
+
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textView"
+        android:layout_width="367dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/nessa_se_o_voc_pode_alterar_visualizar_a_tabela_de_cachorros_da_database_hosteada_no_mysql_para_o_site_anjos_gaar"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/testNavButton"
         android:layout_width="wrap_content"
         android:layout_height="59dp"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="296dp"
+        android:layout_marginBottom="136dp"
+        android:backgroundTint="@color/agorange"
         android:foregroundGravity="center"
         android:onClick="segundaTela"
-        android:text="Menu"/>
+        android:text="Menu Cachorros"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="420dp"
+        android:layout_height="262dp"
+        android:src="@drawable/logo_semfundo"
+        app:layout_constraintBottom_toTopOf="@+id/testNavButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
