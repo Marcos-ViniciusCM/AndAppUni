@@ -17,17 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <Button
-            android:id="@+id/testNavButton"
-            android:layout_width="wrap_content"
-            android:layout_height="59dp"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="296dp"
-            android:foregroundGravity="center"
-            android:onClick="segundaTela"
-            android:text="Menu"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

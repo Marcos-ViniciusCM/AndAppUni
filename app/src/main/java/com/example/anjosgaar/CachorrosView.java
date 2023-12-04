@@ -37,6 +37,7 @@ public class CachorrosView extends AppCompatActivity {
         Intent in =  new Intent(CachorrosView.this,MainActivity.class );
         startActivity(in);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,4 +177,5 @@ public class CachorrosView extends AppCompatActivity {
             }
         }
     }
+
 }
