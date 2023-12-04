@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addCao">
+
+    <Button
+        android:id="@+id/bt_addDog"
+        android:layout_width="127dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="160dp"
+        android:backgroundTint="@color/agorange"
+        android:text="Adicionar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/testNavButton"
+        android:layout_width="91dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="160dp"
+        android:backgroundTint="@color/agorange"
+        android:foregroundGravity="center"
+        android:onClick="segundaTela"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="136dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Nome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/sexInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="212dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Sexo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/descInput"
+        android:layout_width="256dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="284dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Descrição"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

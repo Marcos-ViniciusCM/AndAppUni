@@ -38,22 +38,20 @@ public class CachorrosView extends AppCompatActivity {
         startActivity(in);
     }
 
+    public void addCao(View view){
+        Intent in =  new Intent(CachorrosView.this,addCao.class );
+        startActivity(in);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cachorros_view);
 
-        Button adicionar = findViewById(R.id.bt_addCao);
         Button remove = findViewById(R.id.bt_removeCao);
         Button update = findViewById(R.id.bt_updateCao);
         Button mostrar = findViewById(R.id.bt_showCao);
-        adicionar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 1);
-            }
-        });
+
 
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,47 +83,10 @@ public class CachorrosView extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-
-            Uri selectedImageUri = data.getData();
-
-            // Inicie uma AsyncTask ou uma Thread para operações em segundo plano
-            new SaveDataTask().execute(selectedImageUri);
-        }
-    }
 
 
-    private class SaveDataTask extends AsyncTask<Uri, Void, Void> {
-        @Override
-        protected Void doInBackground(Uri... uris) {
-            Uri selectedImageUri = uris[0];
 
 
-            try {
-                InputStream imageInputStream = getContentResolver().openInputStream(selectedImageUri);
-
-                if (imageInputStream != null) {
-
-                    CachorroDB.save("pipoca", "femea", "argumento3", imageInputStream);
-                } else {
-
-                    Log.e("TAG", "Falha ao abrir o InputStream da imagem");
-                }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                // Trate a exceção de arquivo não encontrado
-            } catch (Exception e) {
-                e.printStackTrace();
-                // Trate outras exceções
-            }
-
-            return null;
-        }
-    }
     protected List<Map<String, Object>> doInBackground(Void... voids) {
         List<Map<String, Object>> cachorros = new ArrayList<>();
 
