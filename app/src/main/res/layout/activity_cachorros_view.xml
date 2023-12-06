@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/aggreen2"
     tools:context=".CachorrosView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,71 +16,75 @@
         tools:layout_editor_absoluteY="-25dp">
 
 
-        <ListView
-            android:id="@+id/seuListView"
-            android:layout_width="237dp"
-            android:layout_height="708dp"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <Button
             android:id="@+id/bt_updateCao"
             android:layout_width="127dp"
             android:layout_height="55dp"
-            android:layout_marginStart="252dp"
-            android:layout_marginBottom="320dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="364dp"
             android:backgroundTint="@color/agorange"
             android:text="Atualizar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/seuListView" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/bt_addCao"
             android:layout_width="127dp"
             android:layout_height="55dp"
-            android:layout_marginStart="252dp"
-            android:layout_marginBottom="392dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="440dp"
             android:backgroundTint="@color/agorange"
-            android:text="Adicionar"
             android:onClick="addCao"
+            android:text="Adicionar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/seuListView" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/bt_showCao"
             android:layout_width="127dp"
             android:layout_height="55dp"
-            android:layout_marginStart="252dp"
-            android:layout_marginBottom="248dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="288dp"
             android:backgroundTint="@color/agorange"
             android:text="Mostrar"
+            android:onClick="mostrar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/seuListView" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/bt_removeCao"
             android:layout_width="127dp"
             android:layout_height="55dp"
-            android:layout_marginStart="252dp"
-            android:layout_marginBottom="172dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginBottom="204dp"
             android:backgroundTint="@color/agorange"
+            android:onClick="delCao"
             android:text="Remover"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/seuListView" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/testNavButton"
             android:layout_width="wrap_content"
             android:layout_height="59dp"
-            android:layout_marginStart="268dp"
-            android:layout_marginTop="24dp"
-            android:foregroundGravity="center"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="620dp"
             android:backgroundTint="@color/agorange"
+            android:foregroundGravity="center"
             android:onClick="segundaTela"
             android:text="Voltar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="219dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="76dp"
+            android:text="@string/escolha_o_que_deseja_fazer_com_essa_tabela"
+            android:textAlignment="center"
+            android:textSize="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

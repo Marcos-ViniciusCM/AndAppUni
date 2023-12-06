@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import java.io.FileNotFoundException;
@@ -46,6 +47,9 @@ public class addCao extends AppCompatActivity {
             new SaveDataTask().execute(selectedImageUri);
         }
     }
+    private void showToast() {
+        Toast.makeText(getApplicationContext(), "Cachorro adicionado com sucesso!", Toast.LENGTH_LONG).show();
+    }
     private class SaveDataTask extends AsyncTask<Uri, Void, Void> {
         @Override
         protected Void doInBackground(Uri... uris) {
@@ -61,6 +65,8 @@ public class addCao extends AppCompatActivity {
                 if (imageInputStream != null) {
 
                     CachorroDB.save(name, sex, desc, imageInputStream);
+
+                    showToast();
                 } else {
 
                     Log.e("TAG", "Falha ao abrir o InputStream da imagem");

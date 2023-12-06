@@ -39,8 +39,18 @@ public class CachorrosView extends AppCompatActivity {
         startActivity(in);
     }
 
+    public void delCao(View view){
+        Intent in =  new Intent(CachorrosView.this,DeleteActivity.class );
+        startActivity(in);
+    }
+
     public void addCao(View view){
         Intent in =  new Intent(CachorrosView.this,addCao.class );
+        startActivity(in);
+    }
+
+    public void mostrar(View view){
+        Intent in =  new Intent(CachorrosView.this,MostrarActivity.class );
         startActivity(in);
     }
 
@@ -48,111 +58,7 @@ public class CachorrosView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cachorros_view);
-
-        Button remove = findViewById(R.id.bt_removeCao);
-        Button update = findViewById(R.id.bt_updateCao);
-        Button mostrar = findViewById(R.id.bt_showCao);
-
-
-        remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        CachorroDB.delete(1);
-                        Log.e("TAG", "removeuuuu");
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                            }
-                        });
-                    }
-                }).start();
-
-            }
-        });
-
-        mostrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new FetchDataFromDatabaseTask(CachorrosView.this).execute();
-            }
-        });
-
-
     }
 
-
-
-
-
-    protected List<Map<String, Object>> doInBackground(Void... voids) {
-        List<Map<String, Object>> cachorros = new ArrayList<>();
-
-        try {
-            cachorros = CachorroDB.obterCao();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return cachorros;
-    }
-
-    private class FetchDataFromDatabaseTask extends AsyncTask<Void, Void, List<Map<String, Object>>> {
-
-        private WeakReference<Context> contextReference;
-
-        FetchDataFromDatabaseTask(Context context) {
-            contextReference = new WeakReference<>(context);
-        }
-
-        @Override
-        protected List<Map<String, Object>> doInBackground(Void... voids) {
-            try {
-                Log.e("TAG", "era para retornar");
-                return CachorroDB.obterCao();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("TAG", "era para retornar lista vazia");
-                return new ArrayList<>();
-            }
-        }
-
-        @Override
-        protected void onPostExecute(List<Map<String, Object>> cachorros) {
-            Context context = contextReference.get();
-            if (context != null) {
-                ListView seuListView = findViewById(R.id.seuListView);
-                seuListView.setAdapter(new CachorroAdapter(context, cachorros));
-                seuListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                seuListView.setOnItemClickListener((parent, view, position, id) -> {
-                    SparseBooleanArray selectedItems = seuListView.getCheckedItemPositions();
-                    for (int i = 0; i < selectedItems.size(); i++) {
-                        int key = selectedItems.keyAt(i);
-                        if (selectedItems.get(key)) {
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Map<String, Object> selectedItemData = CachorroAdapter.getItemData(key);
-                                    String id = selectedItemData.get("id").toString();
-                                    CachorroDB.delete(Integer.parseInt(id));
-                                    Log.e("TAG", "removeuuuu");
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-
-                                        }
-                                    });
-                                }
-                            }).start();
-                        }
-                    }
-                });
-            }
-        }
-    }
 
 }

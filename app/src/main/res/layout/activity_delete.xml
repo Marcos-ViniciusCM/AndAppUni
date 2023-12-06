@@ -4,6 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/aggreen2"
     tools:context=".DeleteActivity">
+
+    <ListView
+        android:id="@+id/seuListView"
+        android:layout_width="407dp"
+        android:layout_height="636dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="222dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/clique_para_deletar"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/testNavButton"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/agorange"
+        android:foregroundGravity="center"
+        android:onClick="segundaTela"
+        android:text="Voltar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

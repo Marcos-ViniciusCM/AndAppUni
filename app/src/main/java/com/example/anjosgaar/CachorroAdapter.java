@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.BitmapFactory;
 
 import java.io.InputStream;
 import java.util.List;
@@ -61,7 +62,7 @@ public class CachorroAdapter extends BaseAdapter {
         Log.d("CachorroAdapter", "Posição: " + position);
         // Verifica se os dados não são nulos antes de definir os textos e a imagem
         if (cachorro != null) {
-            nomeTextView.setText((CharSequence) cachorro.get("id"));
+            idTextView.setText("Id: " + (cachorro.get("id") != null ? cachorro.get("id") : ""));
             nomeTextView.setText("Nome: " + (cachorro.get("nome") != null ? cachorro.get("nome") : ""));
             sexoTextView.setText("Sexo: " + (cachorro.get("sexo") != null ? cachorro.get("sexo") : ""));
             descricaoTextView.setText("Descrição: " + (cachorro.get("descricao") != null ? cachorro.get("descricao") : ""));
@@ -71,18 +72,16 @@ public class CachorroAdapter extends BaseAdapter {
             Log.d("CachorroAdapter", "Descrição: " + cachorro.get("descricao"));
 
             // Verifica se a imagem não é nula antes de configurar no ImageView
-            Object imagemObject = cachorro.get("foto");
-            if (imagemObject instanceof InputStream) {
-                imagemImageView.setImageBitmap(getBitmapFromInputStream((InputStream) imagemObject));
+            Object imagemObject = cachorro.get("imagem");
+            if (imagemObject instanceof byte[]) {
+                byte[] imagemBytes = (byte[]) imagemObject;
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imagemBytes, 0, imagemBytes.length);
+                imagemImageView.setImageBitmap(bitmap);
             }
         }
 
         return view;
     }
 
-    private Bitmap getBitmapFromInputStream(InputStream inputStream) {
-
-        return null;
-    }
 }
 

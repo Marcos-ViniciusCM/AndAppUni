@@ -2,6 +2,7 @@ package com.example.anjosgaar;
 
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -126,9 +127,12 @@ public class CachorroDB {
 
                 // Verifica se a imagem não é nula antes de adicionar ao Map
                 if (imagem != null) {
-                    InputStream imagemInputStream = imagem.getBinaryStream();
-                    cachorro.put("imagem", imagemInputStream);
-
+                    try (InputStream imagemInputStream = imagem.getBinaryStream()) {
+                        byte[] imagemBytes = toByteArray(imagemInputStream);
+                        cachorro.put("imagem", imagemBytes);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 cachorros.add(cachorro);
                 Log.d("CachorroDB", "Id: " + cachorro.get("id"));
@@ -157,7 +161,15 @@ public class CachorroDB {
         return cachorros;
     }
 
-
+    private static byte[] toByteArray(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            byteArrayOutputStream.write(buffer, 0, bytesRead);
+        }
+        return byteArrayOutputStream.toByteArray();
+    }
 
 }
 
