@@ -3,10 +3,12 @@ package com.example.anjosgaar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.view.View;
 import android.widget.ListView;
 
 import java.lang.ref.WeakReference;
@@ -21,6 +23,11 @@ public class MostrarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar);
         new MostrarActivity.FetchDataFromDatabaseTask(MostrarActivity.this).execute();
+    }
+
+    public void segundaTela(View view){
+        Intent in =  new Intent(MostrarActivity.this,CachorrosView.class );
+        startActivity(in);
     }
 
     protected List<Map<String, Object>> doInBackground(Void... voids) {

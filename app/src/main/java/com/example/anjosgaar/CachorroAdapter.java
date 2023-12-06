@@ -62,10 +62,10 @@ public class CachorroAdapter extends BaseAdapter {
         Log.d("CachorroAdapter", "Posição: " + position);
         // Verifica se os dados não são nulos antes de definir os textos e a imagem
         if (cachorro != null) {
-            idTextView.setText("Id: " + (cachorro.get("id") != null ? cachorro.get("id") : ""));
+            idTextView.setText("" + (cachorro.get("id") != null ? cachorro.get("id") : ""));
             nomeTextView.setText("Nome: " + (cachorro.get("nome") != null ? cachorro.get("nome") : ""));
             sexoTextView.setText("Sexo: " + (cachorro.get("sexo") != null ? cachorro.get("sexo") : ""));
-            descricaoTextView.setText("Descrição: " + (cachorro.get("descricao") != null ? cachorro.get("descricao") : ""));
+            descricaoTextView.setText("" + (cachorro.get("descricao") != null ? cachorro.get("descricao") : ""));
             Log.d("CachorroAdapter", "id: " + cachorro.get("id"));
             Log.d("CachorroAdapter", "Nome: " + cachorro.get("nome"));
             Log.d("CachorroAdapter", "Sexo: " + cachorro.get("sexo"));

@@ -48,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         Intent in =  new Intent(MainActivity.this,CachorrosView.class );
         startActivity(in);
     }
+
+    public void volun(View view){
+        Intent in =  new Intent(MainActivity.this,VolunDel.class );
+        startActivity(in);
+    }
     public void listarDados(){
 
     }

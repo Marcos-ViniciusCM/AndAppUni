@@ -35,7 +35,7 @@ import android.widget.ListView;
 public class DeleteActivity extends AppCompatActivity {
 
     public void segundaTela(View view){
-        Intent in =  new Intent(DeleteActivity.this,MainActivity.class );
+        Intent in =  new Intent(DeleteActivity.this,CachorrosView.class );
         startActivity(in);
     }
 
