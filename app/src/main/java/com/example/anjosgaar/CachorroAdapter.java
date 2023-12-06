@@ -15,7 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 public class CachorroAdapter extends BaseAdapter {
-    private List<Map<String, Object>> cachorros;
+
+    public static Map<String, Object> getItemData(int position) {
+        return cachorros.get(position);
+    }
+    private static List<Map<String, Object>> cachorros;
     private LayoutInflater inflater;
 
     public CachorroAdapter(Context context, List<Map<String, Object>> cachorros) {
@@ -49,6 +53,7 @@ public class CachorroAdapter extends BaseAdapter {
         Map<String, Object> cachorro = cachorros.get(position);
 
         // Preenche os dados nos componentes de layout
+        TextView idTextView = view.findViewById(R.id.idTextView);
         TextView nomeTextView = view.findViewById(R.id.nomeTextView);
         TextView sexoTextView = view.findViewById(R.id.sexoTextView);
         TextView descricaoTextView = view.findViewById(R.id.descricaoTextView);
@@ -56,9 +61,11 @@ public class CachorroAdapter extends BaseAdapter {
         Log.d("CachorroAdapter", "Posição: " + position);
         // Verifica se os dados não são nulos antes de definir os textos e a imagem
         if (cachorro != null) {
+            nomeTextView.setText((CharSequence) cachorro.get("id"));
             nomeTextView.setText("Nome: " + (cachorro.get("nome") != null ? cachorro.get("nome") : ""));
             sexoTextView.setText("Sexo: " + (cachorro.get("sexo") != null ? cachorro.get("sexo") : ""));
             descricaoTextView.setText("Descrição: " + (cachorro.get("descricao") != null ? cachorro.get("descricao") : ""));
+            Log.d("CachorroAdapter", "id: " + cachorro.get("id"));
             Log.d("CachorroAdapter", "Nome: " + cachorro.get("nome"));
             Log.d("CachorroAdapter", "Sexo: " + cachorro.get("sexo"));
             Log.d("CachorroAdapter", "Descrição: " + cachorro.get("descricao"));
@@ -73,10 +80,8 @@ public class CachorroAdapter extends BaseAdapter {
         return view;
     }
 
-    // Método fictício para converter InputStream em Bitmap
     private Bitmap getBitmapFromInputStream(InputStream inputStream) {
-        // Implemente a lógica real para converter InputStream em Bitmap
-        // Retorna um bitmap ou null, dependendo da lógica implementada
+
         return null;
     }
 }

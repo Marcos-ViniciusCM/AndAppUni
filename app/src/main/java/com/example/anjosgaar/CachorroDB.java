@@ -112,12 +112,13 @@ public class CachorroDB {
         ResultSet rs = null;
         try {
             conn = ConexaoFactory.getConexao();
-            String sql = "Select nome, sexo, descricao, foto FROM anjoos_test.cachorros";
+            String sql = "Select id, nome, sexo, descricao, foto FROM anjoos_test.cachorros";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 Map<String, Object> cachorro = new HashMap<>();
+                cachorro.put("id", rs.getString("id"));
                 cachorro.put("nome", rs.getString("nome"));
                 cachorro.put("sexo", rs.getString("sexo"));
                 cachorro.put("descricao", rs.getString("descricao"));
@@ -130,6 +131,7 @@ public class CachorroDB {
 
                 }
                 cachorros.add(cachorro);
+                Log.d("CachorroDB", "Id: " + cachorro.get("id"));
                 Log.d("CachorroDB", "Nome: " + cachorro.get("nome"));
                 Log.d("CachorroDB", "Sexo: " + cachorro.get("sexo"));
                 Log.d("CachorroDB", "Descricao: " + cachorro.get("descricao"));

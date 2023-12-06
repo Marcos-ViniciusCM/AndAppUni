@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AnjosGaar"
         tools:targetApi="31">
         <activity
+            android:name=".DeleteActivity"
+            android:exported="false" />
+        <activity
             android:name=".addCao"
             android:exported="false" />
         <activity

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Button;
 
@@ -90,13 +91,9 @@ public class CachorrosView extends AppCompatActivity {
     protected List<Map<String, Object>> doInBackground(Void... voids) {
         List<Map<String, Object>> cachorros = new ArrayList<>();
 
-        // Conectar ao servidor e obter dados
-        // Exemplo fictício, você precisa substituir isso com sua lógica real
         try {
-            // Conectar ao servidor, obter dados e preencher a lista de cachorros
             cachorros = CachorroDB.obterCao();
         } catch (Exception e) {
-            // Lidar com exceções, se necessário
             e.printStackTrace();
         }
 
@@ -113,18 +110,14 @@ public class CachorrosView extends AppCompatActivity {
 
         @Override
         protected List<Map<String, Object>> doInBackground(Void... voids) {
-            // Conectar ao servidor e obter dados
-            // Exemplo fictício, você precisa substituir isso com sua lógica real
             try {
-                // Conectar ao servidor, obter dados e preencher a lista de cachorros
                 Log.e("TAG", "era para retornar");
                 return CachorroDB.obterCao();
 
             } catch (Exception e) {
-                // Lidar com exceções, se necessário
                 e.printStackTrace();
                 Log.e("TAG", "era para retornar lista vazia");
-                return new ArrayList<>(); // Retorna uma lista vazia em caso de erro
+                return new ArrayList<>();
             }
         }
 
@@ -132,9 +125,32 @@ public class CachorrosView extends AppCompatActivity {
         protected void onPostExecute(List<Map<String, Object>> cachorros) {
             Context context = contextReference.get();
             if (context != null) {
-                // Atualize a interface do usuário com os dados obtidos do banco
                 ListView seuListView = findViewById(R.id.seuListView);
                 seuListView.setAdapter(new CachorroAdapter(context, cachorros));
+                seuListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                seuListView.setOnItemClickListener((parent, view, position, id) -> {
+                    SparseBooleanArray selectedItems = seuListView.getCheckedItemPositions();
+                    for (int i = 0; i < selectedItems.size(); i++) {
+                        int key = selectedItems.keyAt(i);
+                        if (selectedItems.get(key)) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Map<String, Object> selectedItemData = CachorroAdapter.getItemData(key);
+                                    String id = selectedItemData.get("id").toString();
+                                    CachorroDB.delete(Integer.parseInt(id));
+                                    Log.e("TAG", "removeuuuu");
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+                                        }
+                                    });
+                                }
+                            }).start();
+                        }
+                    }
+                });
             }
         }
     }

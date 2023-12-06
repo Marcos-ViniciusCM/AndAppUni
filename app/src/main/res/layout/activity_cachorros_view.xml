@@ -14,7 +14,6 @@
         tools:layout_editor_absoluteX="117dp"
         tools:layout_editor_absoluteY="-25dp">
 
-        <!-- Adicione uma ListView com o ID correto -->
 
         <ListView
             android:id="@+id/seuListView"

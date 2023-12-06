@@ -43,7 +43,6 @@ public class addCao extends AppCompatActivity {
 
             Uri selectedImageUri = data.getData();
 
-            // Inicie uma AsyncTask ou uma Thread para operações em segundo plano
             new SaveDataTask().execute(selectedImageUri);
         }
     }
@@ -68,10 +67,8 @@ public class addCao extends AppCompatActivity {
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                // Trate a exceção de arquivo não encontrado
             } catch (Exception e) {
                 e.printStackTrace();
-                // Trate outras exceções
             }
 
             return null;

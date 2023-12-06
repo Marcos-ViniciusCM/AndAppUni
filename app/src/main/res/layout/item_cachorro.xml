@@ -6,6 +6,13 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+
+    <TextView
+        android:id="@+id/idTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Id: "/>
+
     <TextView
         android:id="@+id/nomeTextView"
         android:layout_width="wrap_content"
@@ -24,10 +31,11 @@
         android:layout_height="wrap_content"
         android:text="Descrição: " />
 
+
     <ImageView
         android:id="@+id/imagemImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:src="@android:color/transparent" />
+        />
 </LinearLayout>
